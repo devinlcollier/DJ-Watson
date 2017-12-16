@@ -2,3 +2,13 @@
 	margin: 20px 0;
 	white-space: pre-line;
 }
+
+.jumbotron {
+	font-family: 'Monoton', cursive;
+	text-align: center;
+}
+
+.card-header {
+	font-family: 'Seymour One', sans-serif;
+	font-size: 20px;
+}
