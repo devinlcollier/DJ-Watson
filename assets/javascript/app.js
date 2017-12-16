@@ -6,48 +6,43 @@ $("#submitBtn").on("click", function() {
     var artistName = $("#artistInput").val().trim();
     var songTitle = $("#songInput").val().trim();
 
-    // Variable to store object
-    var newArtistSong = {
-        artist: artistName,
-        song: songTitle
-    };
-
-    // URL construct to search lyrics.ovh for artist and song
-    var queryURL = "https://api.lyrics.ovh/v1/" + newArtistSong.artist + "/" + newArtistSong.song;
-
-    // AJAX GET request
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).done(function(response) { // When data returns from API
-        console.log(response);
-
-        // var results = response.data;
-        console.log(response.lyrics);
-
-        // Replace \n with <br>
-        // var str = response.lyrics;
-        // var re = "\n";
-        // var newstr = str.replace(re, "<br>");
-        // console.log(newstr);
-
-        // Append to lyrics section
-        $("#lyricsSection").append(response.lyrics);
-    });
-
     // Clear lyrics
     $("#lyricsSection").empty();
+    getLyrics(artistName, songTitle, function(lyrics){
+        console.log(lyrics);
+    });
+    $("#lyricsSection").text("hello");
 
     // Clear form
     $("#artistInput").val("");
     $("#songInput").val("");
 
-    console.log(newArtistSong.artist);
-    console.log(newArtistSong.song);
-
     // Prepend artist and song to table
-    $("#artistSongTable > tbody").prepend("<tr><td>" + newArtistSong.artist + "</td><td>" + newArtistSong.song + "</td></tr>");
+    $("#artistSongTable > tbody").prepend("<tr><td>" + artistName + "</td><td>" + songTitle + "</td></tr>");
 });
+
+function getLyrics(artistName, songTitle, cb) {
+    var ret = "";
+    console.log(artistName);
+    console.log(songTitle);
+    if (artistName !== null && artistName !== "" && songTitle !== null && songTitle !== "") {
+        console.log("running");
+        var queryURL = "https://api.lyrics.ovh/v1/" + artistName + "/" + songTitle;
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).done(function(response) { // When data returns from API
+            // Append to lyrics section
+            ret = response.lyrics;
+            //console.log(ret);
+            //$("#lyricsSection").text(ret);
+            console.log(ret);
+            cb(ret);
+        });
+    }
+    
+    //return ret;
+}
 
 $("#sign-in").on("click", function() {
     var base_url = "https://accounts.spotify.com/authorize?";
@@ -81,7 +76,7 @@ function Ssearch(accessToken, query) {
     }
 }
 
-function SplayButton(uri) {
+function SplayButton(uri) { //builds a iframe from a track url(uri) return jquery object
     if (uri.indexOf("/track/") !== -1) {
         var play = $("<iframe>");
         play.attr("src", "https://open.spotify.com/embed?uri=spotify:track:" + uri.slice(uri.lastIndexOf("/") + 1));
