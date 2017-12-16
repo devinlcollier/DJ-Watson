@@ -88,7 +88,7 @@ function Ssearch(accessToken, query) {
 }
 
 function SplayButton(uri) {
-    if (uri.indexof("/track/") !== -1) {
+    if (uri.indexOf("/track/") !== -1) {
         var play = $("<iframe>");
         play.attr("src", "https://open.spotify.com/embed?uri=spotify:track:" + uri.slice(uri.lastIndexOf("/")));
         play.attr("width", "300");
@@ -98,3 +98,5 @@ function SplayButton(uri) {
         return play;
     }
 }
+
+$("#playbutton").append(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp"));
