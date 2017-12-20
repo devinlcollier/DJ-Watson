@@ -1,5 +1,4 @@
 var accessToken = "";
-//https://devinlcollier.github.io/DJ-Watson/#access_token=BQAAekHl6ghS7sYuAp9juftx4L7gw0QfBUX_6Hr7bhpNkUWPiTNn2-cxzVpic-Cxz1uaTDN8oR2qaSiMc8K17GveLnMMg0HjFUBWj9LxrDgR6MNNQqol2DEGePHau0tbMvA7b4qX9x0VVgFh_ObY7Fjpdl7JoRQ&token_type=Bearer&expires_in=3600
 window.onload = function()
 {
     var url = window.location.href;
@@ -7,6 +6,7 @@ window.onload = function()
     if(url.indexOf("#access_token=") !== -1)
     {
         accessToken = url.slice(url.indexOf("#access_token=") + 14, url.indexOf("&"));
+        console.log(accessToken);
     }
 }
 
@@ -20,6 +20,18 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+
+//onclick for song search
+$("#searchBtn").on("click", function(){
+    event.preventDefault();
+    var search_str = $("#searchInput").val().trim();
+    console.log(search_str);
+    if(search_str !== null && search_str !== "")
+    {
+        Ssearch(accessToken, search_str);
+        $("#searchInput").val("");
+    }
+});
 
 // On click event when submit button is clicked
 $("#submitBtn").on("click", function() {
@@ -135,7 +147,3 @@ database.ref("recently_added").on("child_added", function (childSnapshot, prevCh
     // Prepend artist and song to table
     $("#artistSongTable > tbody").prepend("<tr><td>" + artistName + "</td><td>" + songTitle + "</td></tr>");
 });
-
-
-
-
