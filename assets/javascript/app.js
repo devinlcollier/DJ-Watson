@@ -1,3 +1,14 @@
+var config = {
+    apiKey: "AIzaSyCM0TWUJq7Z5tpL75pBGBIAXkxnAW8Ae54",
+    authDomain: "dj-watson.firebaseapp.com",
+    databaseURL: "https://dj-watson.firebaseio.com",
+    projectId: "dj-watson",
+    storageBucket: "",
+    messagingSenderId: "596396478658"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+
 // On click event when submit button is clicked
 $("#submitBtn").on("click", function() {
     event.preventDefault();
@@ -9,11 +20,11 @@ $("#submitBtn").on("click", function() {
     // Clear lyrics
     $("#lyricsSection").empty();
 
-    getLyrics(artistName, songTitle, function(lyrics)//get lyrics and display them on the page
-    {
-        console.log(lyrics);
-        $("#lyricsSection").text(lyrics);
-    });
+    getLyrics(artistName, songTitle, function(lyrics) //get lyrics and display them on the page
+        {
+            console.log(lyrics);
+            $("#lyricsSection").text(lyrics);
+        });
 
     // Clear form
     $("#artistInput").val("");
@@ -23,7 +34,7 @@ $("#submitBtn").on("click", function() {
     $("#artistSongTable > tbody").prepend("<tr><td>" + artistName + "</td><td>" + songTitle + "</td></tr>");
 });
 
-function getLyrics(artistName, songTitle, cb)//TO-DO add promise to this function and remove cb
+function getLyrics(artistName, songTitle, cb) //TO-DO add promise to this function and remove cb
 {
     var ret = "";
     console.log(artistName);
@@ -43,7 +54,7 @@ function getLyrics(artistName, songTitle, cb)//TO-DO add promise to this functio
             cb(ret);
         });
     }
-    
+
     //return ret;
 }
 /*
@@ -51,8 +62,7 @@ this function takes care of the spotify sign-in, add a button to the page with t
 TO-DO get the accessToken from the redirect url and save it to a global varible
 TO-DO register a callback url with spotify
 */
-$("#sign-in").on("click", function()
-{
+$("#sign-in").on("click", function() {
     var base_url = "https://accounts.spotify.com/authorize?";
     base_url += $.param({
         client_id: "6618f4e3f19a4d4d8cc41c05297e911b",
@@ -68,10 +78,8 @@ $("#sign-in").on("click", function()
 this function searchs spotify for a song, query is the song title as a string
 TO-DO add code to get the band name from the response JSON
 */
-function Ssearch(accessToken, query) 
-{
-    if (accessToken !== null && accessToken !== "" && query !== null && query !== "") 
-    {
+function Ssearch(accessToken, query) {
+    if (accessToken !== null && accessToken !== "" && query !== null && query !== "") {
         var params = {
             q: query,
             type: "track,artist",
@@ -102,4 +110,4 @@ function SplayButton(uri) { //builds a iframe from a track url(uri) returns jque
     }
 }
 
-$("#playbutton").append(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp"));//test code
+$("#playbutton").append(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp")); //test code
