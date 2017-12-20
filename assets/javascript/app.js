@@ -30,8 +30,11 @@ $("#submitBtn").on("click", function() {
     $("#artistInput").val("");
     $("#songInput").val("");
 
-    // Prepend artist and song to table
-    $("#artistSongTable > tbody").prepend("<tr><td>" + artistName + "</td><td>" + songTitle + "</td></tr>");
+    database.ref("recently_added").push({
+        artist: artistName, 
+        song: songTitle
+    });
+
 });
 
 function getLyrics(artistName, songTitle, cb) //TO-DO add promise to this function and remove cb
@@ -111,3 +114,17 @@ function SplayButton(uri) { //builds a iframe from a track url(uri) returns jque
 }
 
 $("#playbutton").append(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp")); //test code
+
+database.ref("recently_added").on("child_added", function (childSnapshot, prevChildKey) {
+    console.log(childSnapshot.val());
+    var artistName = childSnapshot.val().artist;
+    var songTitle = childSnapshot.val().song;
+    console.log(artistName);
+    console.log(songTitle);
+    // Prepend artist and song to table
+    $("#artistSongTable > tbody").prepend("<tr><td>" + artistName + "</td><td>" + songTitle + "</td></tr>");
+});
+
+
+
+
