@@ -105,14 +105,15 @@ TO-DO add code to get the band name from the response JSON
 */
 function Ssearch(accessToken, query) {
     if (accessToken !== null && accessToken !== "" && query !== null && query !== "") {
-        var params = {
+        var url = "https://api.spotify.com/v1/search";
+        url += $.param({
             q: query,
             type: "track,artist",
             market: "US"
-        }
+        });
 
         $.ajax({
-            url: "https://api.spotify.com/v1/search",
+            url: url,
             headers: {
                 "Authorization": "Bearer " + accessToken
             },
