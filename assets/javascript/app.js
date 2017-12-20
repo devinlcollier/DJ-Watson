@@ -105,7 +105,7 @@ TO-DO add code to get the band name from the response JSON
 */
 function Ssearch(accessToken, query) {
     if (accessToken !== null && accessToken !== "" && query !== null && query !== "") {
-        var url = "https://api.spotify.com/v1/search";
+        var url = "https://api.spotify.com/v1/search?";
         url += $.param({
             q: query,
             type: "track,artist",
@@ -118,8 +118,8 @@ function Ssearch(accessToken, query) {
                 "Authorization": "Bearer " + accessToken
             },
             success: function(response) {
-                console.log(response);
-                console.log(response.tracks.items[0].external_urls.spotify);//untested
+                console.log(response.tracks.items[0].external_urls.spotify);
+                $("#playbutton").html(SplayButton(response.tracks.items[0].external_urls.spotify));
             }
         });
     }
@@ -137,7 +137,7 @@ function SplayButton(uri) { //builds a iframe from a track url(uri) returns jque
     }
 }
 
-$("#playbutton").append(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp")); //test code
+$("#playbutton").html(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp")); //test code
 
 database.ref("recently_added").on("child_added", function (childSnapshot, prevChildKey) {
     console.log(childSnapshot.val());
