@@ -67,7 +67,7 @@ $("#sign-in").on("click", function() {
     base_url += $.param({
         client_id: "6618f4e3f19a4d4d8cc41c05297e911b",
         response_type: "token",
-        redirect_uri: "https://www.google.com/"
+        redirect_uri: "https://devinlcollier.github.io/DJ-Watson/"
     });
     console.log(base_url);
 
