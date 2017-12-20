@@ -118,6 +118,7 @@ function Ssearch(accessToken, query) {
                 "Authorization": "Bearer " + accessToken
             },
             success: function(response) {
+                console.log(response.tracks.items[0]);
                 console.log(response.tracks.items[0].external_urls.spotify);
                 $("#playbutton").html(SplayButton(response.tracks.items[0].external_urls.spotify));
             }
