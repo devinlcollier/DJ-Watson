@@ -1,3 +1,15 @@
+var accessToken = "";
+//https://devinlcollier.github.io/DJ-Watson/#access_token=BQAAekHl6ghS7sYuAp9juftx4L7gw0QfBUX_6Hr7bhpNkUWPiTNn2-cxzVpic-Cxz1uaTDN8oR2qaSiMc8K17GveLnMMg0HjFUBWj9LxrDgR6MNNQqol2DEGePHau0tbMvA7b4qX9x0VVgFh_ObY7Fjpdl7JoRQ&token_type=Bearer&expires_in=3600
+window.onload = function()
+{
+    var url = window.location.href;
+    console.log(url);
+    if(url.indexOf("#access_token=") !== -1)
+    {
+        accessToken = url.slice(url.indexOf("#access_token=") + 14, url.indexOf("&"));
+    }
+}
+
 var config = {
     apiKey: "AIzaSyCM0TWUJq7Z5tpL75pBGBIAXkxnAW8Ae54",
     authDomain: "dj-watson.firebaseapp.com",
@@ -62,8 +74,6 @@ function getLyrics(artistName, songTitle, cb) //TO-DO add promise to this functi
 }
 /*
 this function takes care of the spotify sign-in, add a button to the page with the id 'sign-in' in order to work
-TO-DO get the accessToken from the redirect url and save it to a global varible
-TO-DO register a callback url with spotify
 */
 $("#sign-in").on("click", function() {
     var base_url = "https://accounts.spotify.com/authorize?";
@@ -96,6 +106,7 @@ function Ssearch(accessToken, query) {
             },
             success: function(response) {
                 console.log(response);
+                console.log(response.tracks.items[0].external_urls.spotify);//untested
             }
         });
     }
