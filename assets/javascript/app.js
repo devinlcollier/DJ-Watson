@@ -115,7 +115,7 @@ function Ssearch(accessToken, query) {
                 "Authorization": "Bearer " + accessToken
             },
             success: function(response) {
-                console.log(response.tracks.items[0]);
+                console.log(response.tracks.items[0].name);
                 /*
                 getLyrics(response.tracks.items[0].artists[0].name, songTitle, function(lyrics) //get lyrics and display them on the page
                 {
