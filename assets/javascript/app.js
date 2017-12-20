@@ -117,9 +117,14 @@ function Ssearch(accessToken, query) {
             success: function(response) {
                 console.log(response.tracks.items[0].name);
                 getLyrics(response.tracks.items[0].artists[0].name, response.tracks.items[0].name, function(lyrics) //get lyrics and display them on the page
-                {
-                    console.log(lyrics);
-                    $("#lyricsSection").text(lyrics);
+                    {
+                        console.log(lyrics);
+                        $("#lyricsSection").text(lyrics);
+                    });
+
+                database.ref("recently_added").push({
+                    artist: response.tracks.items[0].artists[0].name,
+                    song: response.tracks.items[0].name
                 });
                 console.log(response.tracks.items[0].external_urls.spotify);
                 $("#playbutton").html(SplayButton(response.tracks.items[0].external_urls.spotify));
