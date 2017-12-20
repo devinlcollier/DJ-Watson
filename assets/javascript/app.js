@@ -116,13 +116,11 @@ function Ssearch(accessToken, query) {
             },
             success: function(response) {
                 console.log(response.tracks.items[0].name);
-                /*
-                getLyrics(response.tracks.items[0].artists[0].name, songTitle, function(lyrics) //get lyrics and display them on the page
+                getLyrics(response.tracks.items[0].artists[0].name, response.tracks.items[0].name, function(lyrics) //get lyrics and display them on the page
                 {
                     console.log(lyrics);
                     $("#lyricsSection").text(lyrics);
                 });
-                */
                 console.log(response.tracks.items[0].external_urls.spotify);
                 $("#playbutton").html(SplayButton(response.tracks.items[0].external_urls.spotify));
             }
