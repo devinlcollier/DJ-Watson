@@ -6,6 +6,7 @@
 .jumbotron {
 	font-family: 'Monoton', cursive;
 	text-align: center;
+	margin-left: 120px;
 }
 
 .card-header {
@@ -19,4 +20,61 @@
 
 #artistSongTable {
 	font-size: 18px;
+}
+/*.form-group{
+	width: 220px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+
+}
+*/
+.btn-primary{
+	width: 220px;
+    position: fixed;
+    top: -50px;
+    left: 0;
+    height: 7vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: trans37rm;
+    margin-top: 120px;
+    margin-bottom: 300px;
+}
+#submitBtn{
+	z-index:100;
+}
+.mb-3{
+	width: 220px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+    margin-top: 300px;
+}
+
+#playbutton{
+    background-color: #181818;
+    position: fixed;
+    width: 590px;
+    bottom: -10vh;
+    z-index: 101;
+    left:220px;
+
+	   }
+..main{
+	height:200;
 }
