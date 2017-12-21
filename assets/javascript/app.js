@@ -1,10 +1,8 @@
 var accessToken = "";
-window.onload = function()
-{
+window.onload = function() {
     var url = window.location.href;
     console.log(url);
-    if(url.indexOf("#access_token=") !== -1)
-    {
+    if (url.indexOf("#access_token=") !== -1) {
         accessToken = url.slice(url.indexOf("#access_token=") + 14, url.indexOf("&"));
         console.log(accessToken);
     }
@@ -22,12 +20,11 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 //onclick for song search
-$("#searchBtn").on("click", function(){
+$("#searchBtn").on("click", function() {
     event.preventDefault();
     var search_str = $("#searchInput").val().trim();
     console.log(search_str);
-    if(search_str !== null && search_str !== "")
-    {
+    if (search_str !== null && search_str !== "") {
         Ssearch(accessToken, search_str);
         $("#searchInput").val("");
     }
@@ -55,7 +52,7 @@ $("#submitBtn").on("click", function() {
     $("#songInput").val("");
 
     database.ref("recently_added").push({
-        artist: artistName, 
+        artist: artistName,
         song: songTitle
     });
 
@@ -118,7 +115,17 @@ function Ssearch(accessToken, query) {
                 "Authorization": "Bearer " + accessToken
             },
             success: function(response) {
-                console.log(response.tracks.items[0].artists[0]);
+                console.log(response.tracks.items[0].name);
+                getLyrics(response.tracks.items[0].artists[0].name, response.tracks.items[0].name, function(lyrics) //get lyrics and display them on the page
+                    {
+                        console.log(lyrics);
+                        $("#lyricsSection").text(lyrics);
+                    });
+
+                database.ref("recently_added").push({
+                    artist: response.tracks.items[0].artists[0].name,
+                    song: response.tracks.items[0].name
+                });
                 console.log(response.tracks.items[0].external_urls.spotify);
                 $("#playbutton").html(SplayButton(response.tracks.items[0].external_urls.spotify));
             }
@@ -140,7 +147,7 @@ function SplayButton(uri) { //builds a iframe from a track url(uri) returns jque
 
 $("#playbutton").html(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp")); //test code
 
-database.ref("recently_added").on("child_added", function (childSnapshot, prevChildKey) {
+database.ref("recently_added").on("child_added", function(childSnapshot, prevChildKey) {
     console.log(childSnapshot.val());
     var artistName = childSnapshot.val().artist;
     var songTitle = childSnapshot.val().song;
