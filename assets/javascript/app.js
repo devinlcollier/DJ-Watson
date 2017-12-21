@@ -98,7 +98,6 @@ $("#sign-in").on("click", function() {
 
 /*
 this function searchs spotify for a song, query is the song title as a string
-TO-DO add code to get the band name from the response JSON
 */
 function Ssearch(accessToken, query) {
     if (accessToken !== null && accessToken !== "" && query !== null && query !== "") {
@@ -128,6 +127,15 @@ function Ssearch(accessToken, query) {
                 });
                 console.log(response.tracks.items[0].external_urls.spotify);
                 $("#playbutton").html(SplayButton(response.tracks.items[0].external_urls.spotify));
+
+                $.post("http://lvh.me/speak", {
+                        song: response.tracks.items[0].name,//untested
+                        lyrics: $("#lyricsSection").text()//untested
+                    },
+                    function(data) {
+                        //data is the url as a string for the mp3
+                        console.log(data);
+                    });
             }
         });
     }
