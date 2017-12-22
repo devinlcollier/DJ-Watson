@@ -1,22 +1,141 @@
 #lyricsSection {
-	margin: 20px 0;
-	white-space: pre-line;
+    margin: 20px 0;
+    white-space: pre-line;
+    font-size: 18px;
 }
 
 .jumbotron {
-	font-family: 'Monoton', cursive;
-	text-align: center;
+    font-family: 'Monoton', cursive;
+    text-align: center;
+    margin-left: 120px;
 }
 
 .card-header {
-	font-family: 'Seymour One', sans-serif;
-	font-size: 20px;
+    font-family: 'Seymour One', sans-serif;
+    font-size: 20px;
 }
 
-#lyricsSection {
-	font-size: 18px;
-}
+/*#lyricsSection {
+    font-size: 18px;
+}*/
 
 #artistSongTable {
-	font-size: 18px;
+    font-size: 18px;
+}
+
+#searchInput {
+    width: 220px;
+    position: fixed;
+    top: 5px;
+    left: 0;
+    height: 5vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+}
+
+/*#artistInput {
+    width: 220px;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    height: 5vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+}*/
+
+#searchBtn {
+    width: 220px;
+    position: fixed;
+    top: -50px;
+    left: 0;
+    height: 5vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+}
+
+/*#submitBtn {
+    width: 220px;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    height: 5vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+}*/
+
+/*#songInput {
+    width: 220px;
+    position: fixed;
+    top: 150px;
+    left: 0;
+    height: 5vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+}*/
+
+.btn-primary {
+    width: 220px;
+    position: fixed;
+    top: -50px;
+    left: 0;
+    height: 7vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: trans37rm;
+    margin-top: 120px;
+    margin-bottom: 300px;
+}
+
+#submitBtn {
+    z-index:100;
+}
+
+#sign-in {
+     width: 220px;
+    position: fixed;
+    top: 120px;
+    left: 0;
+    height: 10vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+}
+
+#sign-in {
+      color: #fff;
+    background-color: #DF691A ;
+    border-color: #DF691A ;
+}
+
+.mb-3 {
+    width: 220px;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    height: 120vh;
+    z-index: 99;
+    background-color: rgba(0,0,0,.5);
+    overflow: auto;
+    min-height: 0!important;
+    will-change: transform;
+    margin-top: 300px;
 }
