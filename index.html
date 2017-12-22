@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>DJ Watson</title>
-
-		<link rel="stylesheet" href="assets/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/bootswatch.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		<link href="https://fonts.googleapis.com/css?family=Monoton|Seymour+One" rel="stylesheet">
-
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <title>DJ Watson</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootswatch.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Monoton|Seymour+One" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<<<<<<< HEAD
 <body>
 
 	<div class="container">
@@ -83,6 +82,68 @@
 <script src="assets/javascript/app.js"></script>
 <script src="https://use.fontawesome.com/986c94adf0.js"></script>
 
+=======
+>>>>>>> 154cea9cce528a584ffee7df9d37c7be0f125e82
 
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1><i class="fa fa-music" aria-hidden="true"></i> DJ WATSON <i class="fa fa-music" aria-hidden="true"></i></h1>
+        </div>
+        <form>
+            <fieldset>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search for song">
+                </div>
+                <button type="Submit" class="btn btn-primary" id="searchBtn">Search</button>
+                <div class="form-group">
+                    <label for="artistInput">Artist</label>
+                    <input type="text" class="form-control" id="artistInput" aria-describedby="artistName" placeholder="Enter artist's name">
+                </div>
+                <div class="form-group">
+                    <label for="songInput">Song</label>
+                    <input type="text" class="form-control" id="songInput" placeholder="Enter song name">
+                </div>
+                <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+            </fieldset>
+        </form>
+        <div class="row">
+            <div class="col-lg-6">
+                <p id="lyricsSection"></p>
+            </div>
+            <div class="">
+            </div>
+            <div class="col-lg-6">
+                <div id="playbutton">
+                </div>
+                <div>
+                    <button id="sign-in">Click Here to Sign In to Spotify</button>
+                </div>
+                <div class="card border-primary mb-3">
+                    <div class="card-header">Recently Played</div>
+                    <div class="card-body text-primary">
+                        <table class="table table-hover" id="artistSongTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Artist</th>
+                                    <th scope="col">Song</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <audio controls>
+                    <source id="watson-sing" src="http://lvh.me/sing/test_song.mp3" type="audio/mpeg"> Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+    <script src="assets/javascript/app.js"></script>
+    <script src="https://use.fontawesome.com/986c94adf0.js"></script>
 </body>
+
 </html>

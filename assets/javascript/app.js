@@ -1,12 +1,10 @@
 var accessToken = "";
-//https://devinlcollier.github.io/DJ-Watson/#access_token=BQAAekHl6ghS7sYuAp9juftx4L7gw0QfBUX_6Hr7bhpNkUWPiTNn2-cxzVpic-Cxz1uaTDN8oR2qaSiMc8K17GveLnMMg0HjFUBWj9LxrDgR6MNNQqol2DEGePHau0tbMvA7b4qX9x0VVgFh_ObY7Fjpdl7JoRQ&token_type=Bearer&expires_in=3600
-window.onload = function()
-{
+window.onload = function() {
     var url = window.location.href;
     console.log(url);
-    if(url.indexOf("#access_token=") !== -1)
-    {
+    if (url.indexOf("#access_token=") !== -1) {
         accessToken = url.slice(url.indexOf("#access_token=") + 14, url.indexOf("&"));
+        console.log(accessToken);
     }
 }
 
@@ -20,6 +18,17 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+
+//onclick for song search
+$("#searchBtn").on("click", function() {
+    event.preventDefault();
+    var search_str = $("#searchInput").val().trim();
+    console.log(search_str);
+    if (search_str !== null && search_str !== "") {
+        Ssearch(accessToken, search_str);
+        $("#searchInput").val("");
+    }
+});
 
 // On click event when submit button is clicked
 $("#submitBtn").on("click", function() {
@@ -43,7 +52,7 @@ $("#submitBtn").on("click", function() {
     $("#songInput").val("");
 
     database.ref("recently_added").push({
-        artist: artistName, 
+        artist: artistName,
         song: songTitle
     });
 
@@ -89,24 +98,44 @@ $("#sign-in").on("click", function() {
 
 /*
 this function searchs spotify for a song, query is the song title as a string
-TO-DO add code to get the band name from the response JSON
 */
 function Ssearch(accessToken, query) {
     if (accessToken !== null && accessToken !== "" && query !== null && query !== "") {
-        var params = {
+        var url = "https://api.spotify.com/v1/search?";
+        url += $.param({
             q: query,
             type: "track,artist",
             market: "US"
-        }
+        });
 
         $.ajax({
-            url: "https://api.spotify.com/v1/search",
+            url: url,
             headers: {
                 "Authorization": "Bearer " + accessToken
             },
             success: function(response) {
-                console.log(response);
-                console.log(response.tracks.items[0].external_urls.spotify);//untested
+                console.log(response.tracks.items[0].name);
+                getLyrics(response.tracks.items[0].artists[0].name, response.tracks.items[0].name, function(lyrics) //get lyrics and display them on the page
+                    {
+                        console.log(lyrics);
+                        $("#lyricsSection").text(lyrics);
+                    });
+
+                database.ref("recently_added").push({
+                    artist: response.tracks.items[0].artists[0].name,
+                    song: response.tracks.items[0].name
+                });
+                console.log(response.tracks.items[0].external_urls.spotify);
+                $("#playbutton").html(SplayButton(response.tracks.items[0].external_urls.spotify));
+
+                $.post("http://lvh.me/speak", {
+                        song: response.tracks.items[0].name,//untested
+                        lyrics: $("#lyricsSection").text()//untested
+                    },
+                    function(data) {
+                        $("#watson-sing").attr("src", data);
+                        console.log(data);
+                    });
             }
         });
     }
@@ -124,9 +153,9 @@ function SplayButton(uri) { //builds a iframe from a track url(uri) returns jque
     }
 }
 
-$("#playbutton").append(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp")); //test code
+$("#playbutton").html(SplayButton("https://open.spotify.com/track/0eFvoRSTTaR2q8bSWVjwfp")); //test code
 
-database.ref("recently_added").on("child_added", function (childSnapshot, prevChildKey) {
+database.ref("recently_added").on("child_added", function(childSnapshot, prevChildKey) {
     console.log(childSnapshot.val());
     var artistName = childSnapshot.val().artist;
     var songTitle = childSnapshot.val().song;
@@ -135,7 +164,3 @@ database.ref("recently_added").on("child_added", function (childSnapshot, prevCh
     // Prepend artist and song to table
     $("#artistSongTable > tbody").prepend("<tr><td>" + artistName + "</td><td>" + songTitle + "</td></tr>");
 });
-
-
-
-
