@@ -5,15 +5,9 @@
 }
 
 .jumbotron {
-<<<<<<< HEAD
     font-family: 'Monoton', cursive;
     text-align: center;
     margin-left: 120px;
-=======
-	font-family: 'Monoton', cursive;
-	text-align: center;
-	margin-left: 120px;
->>>>>>> 154cea9cce528a584ffee7df9d37c7be0f125e82
 }
 
 .card-header {
@@ -26,7 +20,6 @@
 }*/
 
 #artistSongTable {
-<<<<<<< HEAD
     font-size: 18px;
 }
 
@@ -49,22 +42,11 @@
     top: 50px;
     left: 0;
     height: 5vh;
-=======
-	font-size: 18px;
-}
-/*.form-group{
-	width: 220px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
->>>>>>> 154cea9cce528a584ffee7df9d37c7be0f125e82
     z-index: 99;
     background-color: rgba(0,0,0,.5);
     overflow: auto;
     min-height: 0!important;
     will-change: transform;
-<<<<<<< HEAD
 }*/
 
 #searchBtn {
@@ -108,13 +90,6 @@
 
 .btn-primary {
     width: 220px;
-=======
-
-}
-*/
-.btn-primary{
-	width: 220px;
->>>>>>> 154cea9cce528a584ffee7df9d37c7be0f125e82
     position: fixed;
     top: -50px;
     left: 0;
@@ -127,7 +102,6 @@
     margin-top: 120px;
     margin-bottom: 300px;
 }
-<<<<<<< HEAD
 
 #submitBtn {
     z-index:100;
@@ -139,23 +113,11 @@
     top: 120px;
     left: 0;
     height: 10vh;
-=======
-#submitBtn{
-	z-index:100;
-}
-.mb-3{
-	width: 220px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
->>>>>>> 154cea9cce528a584ffee7df9d37c7be0f125e82
     z-index: 99;
     background-color: rgba(0,0,0,.5);
     overflow: auto;
     min-height: 0!important;
     will-change: transform;
-<<<<<<< HEAD
 }
 
 #sign-in {
@@ -167,29 +129,14 @@
 .mb-3 {
     width: 220px;
     position: fixed;
-    top: 50px;
+    top: -70px;
+    bottom: 100px;
     left: 0;
-    height: 120vh;
+    height: 70vh;
     z-index: 99;
     background-color: rgba(0,0,0,.5);
     overflow: auto;
     min-height: 0!important;
     will-change: transform;
     margin-top: 300px;
-=======
-    margin-top: 300px;
-}
-
-#playbutton{
-    background-color: #181818;
-    position: fixed;
-    width: 590px;
-    bottom: -10vh;
-    z-index: 101;
-    left:220px;
-
-	   }
-..main{
-	height:200;
->>>>>>> 154cea9cce528a584ffee7df9d37c7be0f125e82
 }
