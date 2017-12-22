@@ -133,7 +133,7 @@ function Ssearch(accessToken, query) {
                         lyrics: $("#lyricsSection").text()//untested
                     },
                     function(data) {
-                        //data is the url as a string for the mp3
+                        $("#watson-sing").attr("src", data);
                         console.log(data);
                     });
             }
